@@ -1,0 +1,19 @@
+﻿@using React.AspNet
+@using React.RenderFunctions
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
+    var styledComponentsFunctions = new StyledComponentsFunctions();
+    var chainedFunctions = new ChainedRenderFunctions(styledComponentsFunctions);
+}
+
+@Html.React("RootComponent.Wrapper", new
+{
+    name = "Teste informacoes",
+    corretores = ViewBag.corretores,
+}, renderFunctions: chainedFunctions);
+
+@{
+    ViewBag.ServerStyles = styledComponentsFunctions.RenderedStyles;
+}
